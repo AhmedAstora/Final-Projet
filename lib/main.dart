@@ -1,20 +1,22 @@
-import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:finalprojectflutter/Providers/authProvider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:provider/provider.dart';
 
 import 'Providers/mainpageprovider.dart';
 import 'Providers/pageviewprovider.dart';
 import 'Router/router.dart';
-import 'Screens/LoginScreen/loginscreen.dart';
-import 'Screens/MainScreen/mainscreen.dart';
 import 'Screens/SplashScreen/splashscreen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: [
@@ -26,6 +28,11 @@ void main() async {
         ChangeNotifierProvider<MainPageProvider>(
           create: (context) {
             return MainPageProvider();
+          },
+        ),
+        ChangeNotifierProvider<AuthProvider>(
+          create: (context) {
+            return AuthProvider();
           },
         ),
       ],
@@ -56,4 +63,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
