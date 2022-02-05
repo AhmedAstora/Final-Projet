@@ -1,5 +1,6 @@
 import 'package:finalprojectflutter/Providers/mainpageprovider.dart';
 import 'package:finalprojectflutter/Router/router.dart';
+import 'package:finalprojectflutter/Screens/CartScreen/cartscreen.dart';
 import 'package:finalprojectflutter/Screens/Product%20Details/productdetails.dart';
 import 'package:finalprojectflutter/Widget/button.dart';
 import 'package:finalprojectflutter/Widget/firstadv.dart';
@@ -59,7 +60,10 @@ class MainScreen extends StatelessWidget {
                           RouterClass.routerClass.pushToSpecificScreenUsingWidget(ProductDetails());
                         }, icon: Icon(Icons.favorite_rounded)),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          RouterClass.routerClass.pushToSpecificScreenUsingWidget(CartScreen());
+
+                        },
                         icon: Image.asset('assets/images/Cart.png')),
                   ],
                   bottom: AppBarsize(),
