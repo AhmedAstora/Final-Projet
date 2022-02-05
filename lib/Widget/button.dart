@@ -35,6 +35,41 @@ class CustomButton extends StatelessWidget {
   }
 
 }
+class CustomButtoncart extends StatelessWidget {
+  String title;
+  Color backgroudColor;
+  Color titleColor;
+
+  CustomButtoncart({this.title, this.backgroudColor, this.titleColor});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ScreenUtilInit(
+        designSize: Size(393, 851),
+        minTextAdapt: true,
+        builder: () =>
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20.w),
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: 50.h,
+              padding: EdgeInsets.symmetric(vertical: 10.h),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.r),
+                  color: backgroudColor),
+              child: Text(
+                title,
+                style: TextStyle(
+                    color: titleColor,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp),
+              ),
+            ));
+  }
+
+}
 
 class CustomButtonSeeAll extends StatelessWidget {
   String title;

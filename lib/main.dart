@@ -1,4 +1,3 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:finalprojectflutter/Providers/authProvider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,8 +9,8 @@ import 'package:provider/provider.dart';
 import 'Providers/mainpageprovider.dart';
 import 'Providers/pageviewprovider.dart';
 import 'Router/router.dart';
+import 'Screens/Product Details/productdetails.dart';
 import 'Screens/SplashScreen/splashscreen.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

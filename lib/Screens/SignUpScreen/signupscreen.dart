@@ -108,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              RouterClass.routerClass.pushToSpecificScreenUsingWidget(LoginScreen());
+                              RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget(LoginScreen());
                             },
                             child: Text(
                               'Sign in? ',

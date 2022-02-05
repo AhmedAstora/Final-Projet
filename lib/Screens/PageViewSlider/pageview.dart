@@ -30,6 +30,7 @@ class PageViewr extends StatelessWidget {
                         children: ViewPager.data
                             .map((e) => Container(
                                   child: Column(
+
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Stack(

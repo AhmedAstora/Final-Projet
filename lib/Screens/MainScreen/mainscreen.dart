@@ -1,4 +1,6 @@
 import 'package:finalprojectflutter/Providers/mainpageprovider.dart';
+import 'package:finalprojectflutter/Router/router.dart';
+import 'package:finalprojectflutter/Screens/Product%20Details/productdetails.dart';
 import 'package:finalprojectflutter/Widget/button.dart';
 import 'package:finalprojectflutter/Widget/firstadv.dart';
 import 'package:finalprojectflutter/Widget/product.dart';
@@ -53,7 +55,9 @@ class MainScreen extends StatelessWidget {
                   backgroundColor: Color(0xFF33907C),
                   actions: [
                     IconButton(
-                        onPressed: () {}, icon: Icon(Icons.favorite_rounded)),
+                        onPressed: () {
+                          RouterClass.routerClass.pushToSpecificScreenUsingWidget(ProductDetails());
+                        }, icon: Icon(Icons.favorite_rounded)),
                     IconButton(
                         onPressed: () {},
                         icon: Image.asset('assets/images/Cart.png')),
