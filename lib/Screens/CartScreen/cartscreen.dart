@@ -1,3 +1,5 @@
+import 'package:finalprojectflutter/Router/router.dart';
+import 'package:finalprojectflutter/Screens/CartScreen/add_new_address.dart';
 import 'package:finalprojectflutter/Widget/button.dart';
 import 'package:finalprojectflutter/Widget/extend_app_bar.dart';
 import 'package:finalprojectflutter/Widget/product_cart_widget.dart';
@@ -31,15 +33,21 @@ class CartScreen extends StatelessWidget {
               body: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
-                      alignment: Alignment.center,
-                      color: Colors.white,
-                      width: double.infinity,
-                      height: 52.h,
-                      child: Text(
-                        '+ Add New Address',
-                        style: TextStyle(
-                            fontSize: 14.sp, color: Color(0xFF4F4F4F)),
+                    InkWell(
+                      onTap: () {
+                        RouterClass.routerClass.pushToSpecificScreenUsingWidget(
+                            AddAddressScreen());
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.white,
+                        width: double.infinity,
+                        height: 52.h,
+                        child: Text(
+                          '+ Add New Address',
+                          style: TextStyle(
+                              fontSize: 14.sp, color: Color(0xFF4F4F4F)),
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -124,5 +132,48 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
             ));
+  }
+}
+
+class AddressCart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      padding: EdgeInsets.only(left: 25.w, top: 15.h, right: 15.w),
+      color: Colors.white,
+      width: double.infinity,
+      height: 69.h,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Deliver to Tradly Team 75119',
+                style: TextStyle(color: Colors.black),
+              ),
+              SizedBox(
+                height: 6.h,
+              ),
+              Text(
+                'Kualalumpur ,Malaysia',
+                style: TextStyle(color: Colors.grey),
+              )
+            ],
+          ),
+          Spacer(),
+          Container(
+            margin: EdgeInsets.only(bottom: 15.h),
+            child: CustomButtonSeeAll(
+              title: 'Change',
+              backgroudColor: const Color(0xFF33907C),
+              titleColor: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

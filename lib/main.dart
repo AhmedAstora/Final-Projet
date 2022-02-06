@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:finalprojectflutter/Providers/add_address_provider.dart';
 import 'package:finalprojectflutter/Providers/authProvider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'Providers/mainpageprovider.dart';
 import 'Providers/pageviewprovider.dart';
 import 'Router/router.dart';
+import 'Screens/CartScreen/add_new_address.dart';
+import 'Screens/CartScreen/cartscreen.dart';
+import 'Screens/MainScreen/mainscreen.dart';
 import 'Screens/Product Details/productdetails.dart';
 import 'Screens/SplashScreen/splashscreen.dart';
 
@@ -34,6 +38,11 @@ void main() async {
             return AuthProvider();
           },
         ),
+        ChangeNotifierProvider<AddressProvider>(
+          create: (context) {
+            return AddressProvider();
+          },
+        ),
       ],
       child: EasyLocalization(
           supportedLocales: [Locale('en'), Locale('ar')],
@@ -57,7 +66,7 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: SplachScreen(),
+        home: MainScreen(),
       ),
     );
   }

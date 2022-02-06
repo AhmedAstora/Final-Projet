@@ -40,6 +40,7 @@ dependencies:
   firebase_storage: ^10.2.6
   image_picker: ^0.8.4+5
   string_validator: ^0.3.0
+  textfield_tags: ^1.4.2
 
 
 

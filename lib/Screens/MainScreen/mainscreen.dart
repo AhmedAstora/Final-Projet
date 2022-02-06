@@ -3,6 +3,7 @@ import 'package:finalprojectflutter/Router/router.dart';
 import 'package:finalprojectflutter/Screens/CartScreen/cartscreen.dart';
 import 'package:finalprojectflutter/Screens/Product%20Details/productdetails.dart';
 import 'package:finalprojectflutter/Widget/button.dart';
+import 'package:finalprojectflutter/Widget/button_navigation.dart';
 import 'package:finalprojectflutter/Widget/firstadv.dart';
 import 'package:finalprojectflutter/Widget/product.dart';
 import 'package:finalprojectflutter/Widget/store.dart';
@@ -12,7 +13,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
-  Color itemcolor = Color(0xFF33907C);
 
   @override
   Widget build(BuildContext context) {
@@ -22,28 +22,7 @@ class MainScreen extends StatelessWidget {
         minTextAdapt: true,
         builder: () => Consumer<MainPageProvider>(
               builder: (cnx, provider, x) => Scaffold(
-                bottomNavigationBar: BottomNavigationBar(
-                  currentIndex: provider.IndexNavigationButton,
-                  onTap: (value) {
-                    provider.IndexNavigationButton = value;
-                    provider.notifyListeners();
-                  },
-                  iconSize: 28.r,
-                  type: BottomNavigationBarType.fixed,
-                  selectedItemColor: itemcolor,
-                  items: const [
-                    BottomNavigationBarItem(
-                        label: 'Home', icon: Icon(Icons.home_filled)),
-                    BottomNavigationBarItem(
-                        label: 'Search', icon: Icon(Icons.search_rounded)),
-                    BottomNavigationBarItem(
-                        label: 'Store', icon: Icon(Icons.storefront_outlined)),
-                    BottomNavigationBarItem(
-                        label: 'History', icon: Icon(Icons.article_rounded)),
-                    BottomNavigationBarItem(
-                        label: 'Profile', icon: Icon(Icons.person_rounded)),
-                  ],
-                ),
+                bottomNavigationBar:ButtonNavigation(),
                 appBar: AppBar(
                   title: Text(
                     'Groceries',
