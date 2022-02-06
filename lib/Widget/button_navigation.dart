@@ -1,5 +1,6 @@
 import 'package:finalprojectflutter/Providers/mainpageprovider.dart';
 import 'package:finalprojectflutter/Router/router.dart';
+import 'package:finalprojectflutter/Screens/HistoryScreen/history_screen.dart';
 import 'package:finalprojectflutter/Screens/MainScreen/mainscreen.dart';
 import 'package:finalprojectflutter/Screens/ProfileScreen/profile_screen.dart';
 import 'package:finalprojectflutter/Screens/StoreScreen/storescreen.dart';
@@ -41,7 +42,7 @@ class ButtonNavigation extends StatelessWidget {
               break;
             case 3:
               RouterClass.routerClass
-                  .pushReplaceToSpecificScreenUsingWidget(StoreScreen());
+                  .pushReplaceToSpecificScreenUsingWidget(HistoryScreen());
               break;
             case 4:
               RouterClass.routerClass

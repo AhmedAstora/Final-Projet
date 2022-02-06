@@ -104,3 +104,75 @@ class CustomButtonSeeAll extends StatelessWidget {
   }
 
 }
+
+
+class CustomButtonorder extends StatelessWidget {
+  String title;
+  Color backgroudColor;
+  Color titleColor;
+
+  CustomButtonorder({this.title, this.backgroudColor, this.titleColor});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ScreenUtilInit(
+        designSize: Size(393, 851),
+        minTextAdapt: true,
+        builder: () =>
+            Container(
+              alignment: Alignment.center,
+              width: 113.w,
+              height: 25.h,
+
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xFF33907C),width: 1),
+                  borderRadius: BorderRadius.circular(30.r),
+                  color: backgroudColor),
+              child: Text(
+                title,
+                style: TextStyle(
+                    color: titleColor,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.sp),
+              ),
+            ));
+  }
+
+}
+class CustomButtonorderConfirmed extends StatelessWidget {
+  String title;
+  Color backgroudColor;
+  Color titleColor;
+
+  CustomButtonorderConfirmed({this.title, this.backgroudColor, this.titleColor});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return ScreenUtilInit(
+        designSize: Size(393, 851),
+        minTextAdapt: true,
+        builder: () =>
+            Container(
+              alignment: Alignment.center,
+              width: 149.w,
+              height: 25.h,
+
+              decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xFF33907C),width: 1),
+                  borderRadius: BorderRadius.circular(30.r),
+                  color: backgroudColor),
+              child: Text(
+                title,
+                style: TextStyle(
+                    color: titleColor,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.sp),
+              ),
+            ));
+  }
+
+}

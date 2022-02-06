@@ -132,6 +132,12 @@ class ProfileScreen extends StatelessWidget {
                     width: double.infinity,
                     height: 266.h,
                     decoration: BoxDecoration(
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                              spreadRadius: 2,
+                              blurRadius: 1,
+                              color: Colors.grey[300])
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10)),
                     child: Container(
