@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomTextfieldAddress extends StatelessWidget {
+class CustomTextfieldProduct extends StatelessWidget {
   String labelText;
   Function validationFun;
   TextEditingController controller;
   TextInputType textInputType;
 
-  CustomTextfieldAddress({this.labelText,
-    this.validationFun,
-    this.controller,
-    this.textInputType = TextInputType.text});
+  CustomTextfieldProduct(
+      {this.labelText,
+      this.validationFun,
+      this.controller,
+      this.textInputType = TextInputType.number});
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +19,23 @@ class CustomTextfieldAddress extends StatelessWidget {
     return ScreenUtilInit(
         designSize: Size(393, 851),
         minTextAdapt: true,
-        builder: () =>
-            Container(
+        builder: () => Container(
+              width: 121.w,
               height: 60.h,
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               margin: EdgeInsets.symmetric(vertical: 10.h),
               child: TextFormField(
-
-
-                  style: TextStyle(color: Colors.black,fontSize:16.sp),
+                  maxLength: 3,
+                  style: TextStyle(color: Colors.black, fontSize: 16.sp),
                   keyboardType: textInputType,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller,
-
                   decoration: InputDecoration(
+                      counterText: '',
                       errorStyle: TextStyle(fontSize: 14.sp),
                       labelStyle: TextStyle(
-                        color: Colors.grey,fontSize: 16.sp,
+                        color: Colors.grey,
+                        fontSize: 16.sp,
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey[400]),
@@ -43,4 +44,3 @@ class CustomTextfieldAddress extends StatelessWidget {
             ));
   }
 }
-

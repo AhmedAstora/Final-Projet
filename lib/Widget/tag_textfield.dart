@@ -4,6 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class TagTextfield extends StatelessWidget {
+  String Title;
+
+  TagTextfield(this.Title);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -20,9 +24,9 @@ class TagTextfield extends StatelessWidget {
 
                   // bool textFieldFilled = false,
                   // Icon icon,
-                  helperText: 'Enter tags (Optional)',
+                  helperText: '$Title (Optional)',
                   // TextStyle helperStyle,
-                  hintText: '   Tagline',
+                  hintText: '   $Title',
                   hintStyle: TextStyle(fontSize: 14.sp),
                   contentPadding: EdgeInsets.symmetric(vertical: 15.h),
                   textFieldBorder: UnderlineInputBorder(

@@ -1,3 +1,5 @@
+import 'package:finalprojectflutter/Router/router.dart';
+import 'package:finalprojectflutter/Screens/AddProductScreen/add_product_screen.dart';
 import 'package:finalprojectflutter/Widget/button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +29,18 @@ class StoreBody extends StatelessWidget {
               SizedBox(
                 height: 100.h,
               ),
-              Container(
-                  margin: EdgeInsets.symmetric(horizontal: 90.w),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xFF33907C)),
-                      borderRadius: BorderRadius.circular(30)),
-                  child: CustomButton(
-                      title: 'Add Product', titleColor: Color(0xFF33907C))),
+              InkWell(
+                onTap: (){
+                  RouterClass.routerClass.pushToSpecificScreenUsingWidget(AddProductScreen());
+                },
+                child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 90.w),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xFF33907C)),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: CustomButton(
+                        title: 'Add Product', titleColor: Color(0xFF33907C))),
+              ),
             ]));
   }
 }

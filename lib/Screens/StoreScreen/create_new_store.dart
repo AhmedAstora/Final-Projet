@@ -83,7 +83,7 @@ class CreateNewStore extends StatelessWidget {
                               labelText: 'Courier Name',
                             ),
 
-                            TagTextfield(),
+                            TagTextfield('Tageline'),
                             SizedBox(height: 20.h,),
                             Container(
                               padding: EdgeInsets.only(top: 20.h,bottom: 30.h),
