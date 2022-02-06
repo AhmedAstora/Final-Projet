@@ -1,6 +1,7 @@
 import 'package:finalprojectflutter/Router/router.dart';
 import 'package:finalprojectflutter/Screens/CartScreen/cartscreen.dart';
 import 'package:finalprojectflutter/Screens/Product%20Details/productdetails.dart';
+import 'package:finalprojectflutter/Widget/button.dart';
 import 'package:finalprojectflutter/Widget/custom_address_textfield.dart';
 import 'package:finalprojectflutter/Widget/tag_textfield.dart';
 import 'package:finalprojectflutter/Widget/textfield.dart';
@@ -18,6 +19,7 @@ class CreateNewStore extends StatelessWidget {
         designSize: Size(393, 851),
         minTextAdapt: true,
         builder: () => Scaffold(
+          backgroundColor: Color(0xFFF6F9FF),
               appBar: AppBar(
                 title: Text(
                   'Create Store',
@@ -32,7 +34,6 @@ class CreateNewStore extends StatelessWidget {
                 bottom: AppBarsizeStore(),
               ),
               body: Container(
-                padding: EdgeInsets.symmetric(horizontal: 25.w,),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -51,33 +52,51 @@ class CreateNewStore extends StatelessWidget {
                       Text('This information is used to set up',style: TextStyle(fontSize: 14.sp),),
                       Text('your shop',style: TextStyle(fontSize: 14.sp),),
                       SizedBox(height: 30.h,),
-                      CustomTextfieldAddress(
-                        labelText: 'Store Name',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'Store Web Address',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'Store Description',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'Store Type',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'Address',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'City',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'State',
-                      ),
-                      CustomTextfieldAddress(
-                        labelText: 'Courier Name',
-                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 25.w,),
 
-                      TagTextfield(),
-                      SizedBox(height: 20.h,)
+                        color: Colors.white,
+                        child: SingleChildScrollView(
+                          child: Column(children: [
+                            CustomTextfieldAddress(
+                              labelText: 'Store Name',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'Store Web Address',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'Store Description',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'Store Type',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'Address',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'City',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'State',
+                            ),
+                            CustomTextfieldAddress(
+                              labelText: 'Courier Name',
+                            ),
+
+                            TagTextfield(),
+                            SizedBox(height: 20.h,),
+                            Container(
+                              padding: EdgeInsets.only(top: 20.h,bottom: 30.h),
+                              color: Colors.white,
+                              child: CustomButtoncart(
+                                title: 'Create',
+                                titleColor: Colors.white,
+                                backgroudColor: Color(0xFF33907C),
+                              ),
+                            ),
+                          ],),
+                        ),
+                      )
 
 
                     ],
