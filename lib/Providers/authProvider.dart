@@ -82,10 +82,10 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  login() async {
+  login(BuildContext context) async {
     try {
       UserCredential userCredential =
-          await FirebaseAuthHelper.firebaseAuthHelper.signIn(loginEmailController.text, loginPasswordController.text);
+          await FirebaseAuthHelper.firebaseAuthHelper.signIn(loginEmailController.text, loginPasswordController.text,context);
       await getUserFromFirebase();
       RouterClass.routerClass
           .pushToSpecificScreenUsingWidget(MainScreen());

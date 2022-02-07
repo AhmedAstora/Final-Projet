@@ -48,7 +48,7 @@ void main() async {
           supportedLocales: [Locale('en'), Locale('ar')],
           path: 'assets/langs', // <-- change the path of the translation files
           fallbackLocale: Locale('en'),
-          child: MyApp()),
+          child: MyApps()),
     ),
   );
 }
@@ -66,7 +66,36 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: MainScreen(),
+        home: SplachScreen(),
+      ),
+    );
+  }
+}
+
+class MyApps extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
+    return ScreenUtilInit(
+      designSize: Size(393, 851),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        navigatorKey: RouterClass.routerClass.navKey,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: SplachScreen(),
+        builder: (context, widget) {
+          //add this line
+          ScreenUtil.setContext(context);
+          return MediaQuery(
+            //Setting font does not change with system font size
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget,
+          );
+        },
       ),
     );
   }

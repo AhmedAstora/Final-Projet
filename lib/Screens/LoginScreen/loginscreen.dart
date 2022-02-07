@@ -48,11 +48,13 @@ class LoginScreen extends StatelessWidget {
                             SizedBox(
                               height: 30.h,
                             ),
-                            CustomTextfield(
+                            CustomTextfieldEmail(
+                              controller: provider.loginEmailController,
                               validationFun: provider.emailValidation,
                               labelText: 'Email',
                             ),
                             CustomTextfieldpassword(
+                              controller: provider.loginPasswordController,
                               validationFun: provider.nullValidator,
                               labelText: 'Password',
                               textInputType: TextInputType.visiblePassword,
@@ -63,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 if (provider.LoginValidate()) {
-                                  provider.login();
+                                  provider.login(context);
                                 }
                               },
                               child: CustomButton(
