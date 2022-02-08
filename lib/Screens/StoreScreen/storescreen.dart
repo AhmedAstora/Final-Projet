@@ -19,7 +19,6 @@ class StoreScreen extends StatelessWidget {
         minTextAdapt: true,
         builder: () => Scaffold(
           backgroundColor: Color(0xFFF6F9FF),
-            bottomNavigationBar: ButtonNavigation(),
             appBar: AppBar(
               title: Text(
                 'My Store',

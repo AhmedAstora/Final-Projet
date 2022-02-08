@@ -20,6 +20,7 @@ class _SplachScreenState extends State<SplachScreen> {
     NavigationFunction(context);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

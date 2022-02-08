@@ -10,6 +10,8 @@ class ProductWidget extends StatelessWidget {
         designSize: Size(393, 851),
         minTextAdapt: true,
         builder: () => Container(
+          width: 160,
+              height: 200,
               margin: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
               decoration:
                   BoxDecoration(borderRadius: BorderRadius.circular(12.r),
@@ -44,7 +46,8 @@ class ProductWidget extends StatelessWidget {
 
                   Container(
                     width: 160.w,
-                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 15),
+
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [

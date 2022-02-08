@@ -10,12 +10,12 @@ import 'package:provider/provider.dart';
 import 'Providers/mainpageprovider.dart';
 import 'Providers/pageviewprovider.dart';
 import 'Router/router.dart';
-import 'Screens/AddProductScreen/add_product_screen.dart';
 import 'Screens/CartScreen/add_new_address.dart';
 import 'Screens/CartScreen/cartscreen.dart';
 import 'Screens/MainScreen/mainscreen.dart';
 import 'Screens/Product Details/productdetails.dart';
 import 'Screens/SplashScreen/splashscreen.dart';
+import 'Screens/StoreProfileSccreen/store_profile_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +54,24 @@ void main() async {
   );
 }
 
-
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    context.setLocale(Locale('en'));
+    return ScreenUtilInit(
+      designSize: Size(393, 851),
+      minTextAdapt: true,
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        navigatorKey: RouterClass.routerClass.navKey,
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        home: SplachScreen(),
+      ),
+    );
+  }
+}
 
 class MyApps extends StatelessWidget {
   @override
@@ -70,7 +87,7 @@ class MyApps extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: AddProductScreen(),
+        home: StoreProfileScreen(),
         builder: (context, widget) {
           //add this line
           ScreenUtil.setContext(context);

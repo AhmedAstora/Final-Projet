@@ -16,10 +16,10 @@ class AuthProvider extends ChangeNotifier {
   GlobalKey<FormState> LoginFormKey = GlobalKey<FormState>();
 
   TUser loggedUser;
+
   // login controller
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
-
 
 // register controller
   TextEditingController firstNameController = TextEditingController();
@@ -35,8 +35,7 @@ class AuthProvider extends ChangeNotifier {
     return null;
   }
 
-
- String emailValidation(String value) {
+  String emailValidation(String value) {
     if (!isEmail(value)) {
       return 'InCorrect Email syntax';
     }
@@ -57,6 +56,7 @@ class AuthProvider extends ChangeNotifier {
       Snakbar('Password dosent match', context);
     }
   }
+
   LoginValidate() {
     bool isSuccess = LoginFormKey.currentState.validate();
     return isSuccess;
@@ -75,8 +75,7 @@ class AuthProvider extends ChangeNotifier {
       tuser.id = userId;
       await FirestoreHelper.firestoreHelper.createUserInFs(tuser);
       this.loggedUser = tuser;
-      RouterClass.routerClass
-          .pushToSpecificScreenUsingWidget(MainScreen());
+      RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
     } on Exception catch (e) {
       // EVERYTHING
     }
@@ -85,10 +84,10 @@ class AuthProvider extends ChangeNotifier {
   login(BuildContext context) async {
     try {
       UserCredential userCredential =
-          await FirebaseAuthHelper.firebaseAuthHelper.signIn(loginEmailController.text, loginPasswordController.text,context);
+          await FirebaseAuthHelper.firebaseAuthHelper.signIn(
+              loginEmailController.text, loginPasswordController.text, context);
       await getUserFromFirebase();
-      RouterClass.routerClass
-          .pushToSpecificScreenUsingWidget(MainScreen());
+      RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
     } on Exception catch (e) {
       // EVERYTHING
     }
@@ -107,9 +106,8 @@ class AuthProvider extends ChangeNotifier {
     RouterClass.routerClass
         .pushReplaceToSpecificScreenUsingWidget(LoginScreen());
   }
-  forgetPassword(String )async{
-    await FirebaseAuthHelper.firebaseAuthHelper.forgetPassword(email)
 
+  forgetPassword(String email) async {
+    await FirebaseAuthHelper.firebaseAuthHelper.forgetPassword(email);
   }
-
 }

@@ -53,15 +53,29 @@ class AddProductScreen extends StatelessWidget {
                                   height: 105.h,
                                   child: Column(
                                     children: [
-                                      SizedBox(height: 15.h,),
+                                      SizedBox(
+                                        height: 15.h,
+                                      ),
                                       Icon(
                                         Icons.add,
                                         color: Colors.grey,
                                         size: 30,
                                       ),
-                                      Text('Add photos',style: TextStyle(fontSize: 15.sp,color: Colors.grey),),
-                                      SizedBox(height: 5.h,),
-                                      Text('1600 x 1200 for hi res',style: TextStyle(fontSize: 12.sp,color: Colors.grey),),
+                                      Text(
+                                        'Add photos',
+                                        style: TextStyle(
+                                            fontSize: 15.sp,
+                                            color: Colors.grey),
+                                      ),
+                                      SizedBox(
+                                        height: 5.h,
+                                      ),
+                                      Text(
+                                        '1600 x 1200 for hi res',
+                                        style: TextStyle(
+                                            fontSize: 12.sp,
+                                            color: Colors.grey),
+                                      ),
                                     ],
                                   ),
                                 ),
