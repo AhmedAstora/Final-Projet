@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class AddressProvider extends ChangeNotifier {
+  int selected = 5;
+
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();

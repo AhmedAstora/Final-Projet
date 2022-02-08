@@ -1,7 +1,12 @@
+import 'dart:developer';
+
+import 'package:finalprojectflutter/Providers/add_address_provider.dart';
 import 'package:finalprojectflutter/Screens/StoreScreen/create_new_store.dart';
 import 'package:finalprojectflutter/Widget/button.dart';
+import 'package:finalprojectflutter/Widget/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class StoreProfileScreen extends StatelessWidget {
   @override
@@ -113,11 +118,6 @@ class StoreProfileScreen extends StatelessWidget {
                       SizedBox(
                         width: 4.w,
                       ),
-                      const Icon(
-                        Icons.close,
-                        color: Colors.black,
-                        size: 16,
-                      )
                     ],
                   ),
                 )
@@ -156,25 +156,65 @@ class StoreProfileScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 25.h,),
-          RowProductsStore('All Product'),
+          SizedBox(
+            height: 25.h,
+          ),
+          Consumer<AddressProvider>(
+            builder: (cnx, provider, x) {
+              return Container(
+                padding: EdgeInsets.only(left: 10.w),
+                height: 35.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  itemBuilder: (cnx, index) => InkWell(
+                    onTap: () {
+                      provider.selected = index;
+                      provider.notifyListeners();
+                      log(provider.selected.toString());
+                    },
+                    child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 3.w),
+                        alignment: Alignment.center,
+                        width: 103,
+                        decoration: BoxDecoration(
+                            color: provider.selected == index
+                                ? Color(0xFF33907C)
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(19),
+                            border: Border.all(color: Colors.grey, width: 1.w)),
+                        height: 31.h,
+                        child: Text(
+                          'All Products',
+                          style: TextStyle(
+                              color: provider.selected == index
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.bold),
+                        )),
+                  ),
+                ),
+              );
+            },
+          ),
+          Expanded(
+            child: Container(
+              margin: EdgeInsets.only(top: 20.h),
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10.w,
+                    mainAxisSpacing: 10.h,
+                    mainAxisExtent: 228.h),
+                itemBuilder: (_, index) => ProductWidget(),
+                itemCount: 18,
+              ),
+            ),
+          )
         ],
       ),
     );
   }
-}
-
-Widget RowProductsStore(String title) {
-  return Container(
-    alignment: Alignment.center,
-    width: 103,
-      decoration: BoxDecoration(
-          color: Color(0xFF33907C),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.grey, width: 1.w)),
-      height: 31.h,
-      child: Text(
-        title,
-        style: TextStyle(color: Colors.white, fontSize: 14.sp,fontWeight: FontWeight.bold),
-      ));
 }
