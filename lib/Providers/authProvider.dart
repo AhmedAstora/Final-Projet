@@ -107,4 +107,9 @@ class AuthProvider extends ChangeNotifier {
     RouterClass.routerClass
         .pushReplaceToSpecificScreenUsingWidget(LoginScreen());
   }
+  forgetPassword(String )async{
+    await FirebaseAuthHelper.firebaseAuthHelper.forgetPassword(email)
+
+  }
+
 }

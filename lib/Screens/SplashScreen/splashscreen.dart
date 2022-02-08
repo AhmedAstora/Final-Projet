@@ -1,8 +1,5 @@
 import 'package:finalprojectflutter/Router/router.dart';
-import 'package:finalprojectflutter/Screens/LoginScreen/loginscreen.dart';
-import 'package:finalprojectflutter/Screens/MainScreen/mainscreen.dart';
 import 'package:finalprojectflutter/Screens/PageViewSlider/pageview.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,15 +10,8 @@ class SplachScreen extends StatefulWidget {
 
 class _SplachScreenState extends State<SplachScreen> {
   NavigationFunction(context) async {
-    await Future.delayed(Duration(milliseconds: 3000)).then((value) {
-      if (FirebaseAuth.instance.currentUser == null) {
-        RouterClass.routerClass
-            .pushReplaceToSpecificScreenUsingWidget(LoginScreen());
-      } else {
-        RouterClass.routerClass
-            .pushReplaceToSpecificScreenUsingWidget(MainScreen());
-      }
-    });
+    await Future.delayed(Duration(milliseconds: 3000));
+    RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget(PageViewr());
   }
 
   @override
@@ -32,7 +22,10 @@ class _SplachScreenState extends State<SplachScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScreenUtilInit(
+        designSize: Size(393, 851),
+        minTextAdapt: true,
+        builder: () => Scaffold(
             backgroundColor: Color(0xFF33907C),
             body: Container(
               alignment: Alignment.center,
@@ -52,6 +45,6 @@ class _SplachScreenState extends State<SplachScreen> {
                   ),
                 ],
               ),
-            ));
+            )));
   }
 }

@@ -48,13 +48,11 @@ class LoginScreen extends StatelessWidget {
                             SizedBox(
                               height: 30.h,
                             ),
-                            CustomTextfieldEmail(
-                              controller: provider.loginEmailController,
+                            CustomTextfield(
                               validationFun: provider.emailValidation,
                               labelText: 'Email',
                             ),
                             CustomTextfieldpassword(
-                              controller: provider.loginPasswordController,
                               validationFun: provider.nullValidator,
                               labelText: 'Password',
                               textInputType: TextInputType.visiblePassword,
@@ -79,9 +77,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                RouterClass.routerClass
-                                    .pushToSpecificScreenUsingWidget(
-                                        MainScreen());
+
                               },
                               child: Text(
                                 'Forgot your password ? ',
