@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:finalprojectflutter/Router/router.dart';
+import 'package:finalprojectflutter/Screens/SignUpScreen/pinput_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -57,5 +61,21 @@ class FirebaseAuthHelper {
 
   verifyEmail() async {
     firebaseAuth.currentUser.sendEmailVerification();
+  }
+
+  registerUsingPhone(String phone) async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: phone,
+      verificationCompleted: (PhoneAuthCredential credential) {
+        return credential;
+      },
+      verificationFailed: (FirebaseAuthException e) {},
+      codeSent: (String verificationId, int resendToken) {
+        RouterClass.routerClass.pushToSpecificScreenUsingWidget(PinputScreen());
+        log(verificationId);
+        log(resendToken.toString());
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
   }
 }

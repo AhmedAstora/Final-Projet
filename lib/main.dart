@@ -4,6 +4,7 @@ import 'package:finalprojectflutter/Providers/authProvider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,8 @@ import 'Screens/CartScreen/add_new_address.dart';
 import 'Screens/CartScreen/cartscreen.dart';
 import 'Screens/MainScreen/mainscreen.dart';
 import 'Screens/Product Details/productdetails.dart';
+import 'Screens/SignUpScreen/pinput_screen.dart';
+import 'Screens/SignUpScreen/send_code_phone.dart';
 import 'Screens/SplashScreen/splashscreen.dart';
 import 'Screens/StoreProfileSccreen/store_profile_screen.dart';
 
@@ -54,24 +57,6 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    context.setLocale(Locale('en'));
-    return ScreenUtilInit(
-      designSize: Size(393, 851),
-      minTextAdapt: true,
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: RouterClass.routerClass.navKey,
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: SplachScreen(),
-      ),
-    );
-  }
-}
 
 class MyApps extends StatelessWidget {
   @override
@@ -87,7 +72,7 @@ class MyApps extends StatelessWidget {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: StoreProfileScreen(),
+        home: MyApp(),
         builder: (context, widget) {
           //add this line
           ScreenUtil.setContext(context);
@@ -97,6 +82,42 @@ class MyApps extends StatelessWidget {
             child: widget,
           );
         },
+      ),
+    );
+  }
+}
+class MyApp extends StatefulWidget {
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+   GoogleMapController mapController;
+
+  final LatLng _center = const LatLng(31.5122807, 34.4358912);
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Maps Sample App'),
+          backgroundColor: Colors.green[700],
+        ),
+        body: GoogleMap(
+          onMapCreated: (GoogleMapController controller){
+            mapController = controller;
+          },
+          initialCameraPosition: CameraPosition(
+            target: _center,
+            zoom: 13.0,
+          ),
+        ),
       ),
     );
   }

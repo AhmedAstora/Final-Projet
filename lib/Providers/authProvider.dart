@@ -6,6 +6,7 @@ import 'package:finalprojectflutter/Models/usermodel.dart';
 import 'package:finalprojectflutter/Router/router.dart';
 import 'package:finalprojectflutter/Screens/LoginScreen/loginscreen.dart';
 import 'package:finalprojectflutter/Screens/MainScreen/mainscreen.dart';
+import 'package:finalprojectflutter/Screens/SignUpScreen/pinput_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,19 @@ import 'package:string_validator/string_validator.dart';
 
 class AuthProvider extends ChangeNotifier {
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> PhoneFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> LoginFormKey = GlobalKey<FormState>();
 
   TUser loggedUser;
+  String value;
+  String Code;
 
   // login controller
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
+
+  //phone controller
+  TextEditingController PhoneloginPasswordController = TextEditingController();
 
 // register controller
   TextEditingController firstNameController = TextEditingController();
@@ -27,6 +34,15 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwrodController = TextEditingController();
   TextEditingController repasswordController = TextEditingController();
+
+  // pinput code controller
+  TextEditingController pinPutController = TextEditingController();
+
+  isCorrectCode() {
+    if (Code == pinPutController.text) {
+      RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
+    }
+  }
 
   String nullValidator(String value) {
     if (value.isEmpty) {
@@ -38,6 +54,12 @@ class AuthProvider extends ChangeNotifier {
   String emailValidation(String value) {
     if (!isEmail(value)) {
       return 'InCorrect Email syntax';
+    }
+  }
+
+  String phoneValidation(String value) {
+    if (!isNumeric(value)) {
+      return 'InCorrect Phone syntax';
     }
   }
 
@@ -60,6 +82,20 @@ class AuthProvider extends ChangeNotifier {
   LoginValidate() {
     bool isSuccess = LoginFormKey.currentState.validate();
     return isSuccess;
+  }
+
+  PhoneValidate() {
+    bool isSuccess = PhoneFormKey.currentState.validate();
+    return isSuccess;
+  }
+
+  RegisterPhone() async {
+    PhoneAuthCredential credential = await FirebaseAuthHelper.firebaseAuthHelper
+        .registerUsingPhone(value + PhoneloginPasswordController.text);
+    Code = credential.smsCode;
+    log(Code);
+    log(credential.smsCode);
+
   }
 
   register(BuildContext context) async {
