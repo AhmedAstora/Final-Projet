@@ -41,7 +41,6 @@ class EmptyStoreBody extends StatelessWidget {
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 70.w),
-                  color: Colors.white,
                   child: CustomButtoncart(
                     title: 'Create Store',
                     titleColor: Colors.white,

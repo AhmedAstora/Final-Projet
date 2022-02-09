@@ -1,3 +1,4 @@
+import 'package:finalprojectflutter/Providers/authProvider.dart';
 import 'package:finalprojectflutter/Providers/mainpageprovider.dart';
 import 'package:finalprojectflutter/Router/router.dart';
 import 'package:finalprojectflutter/Screens/CartScreen/cartscreen.dart';
@@ -89,195 +90,197 @@ class MainPageContent extends StatelessWidget {
     // TODO: implement build
     return ScreenUtilInit(
         designSize: Size(393, 851),
-    minTextAdapt: true,
-    builder: () => Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Groceries',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Montserrat',
-              fontSize: 24.sp),
-        ),
-        elevation: 0,
-        backgroundColor: Color(0xFF33907C),
-        actions: [
-          IconButton(
-              onPressed: () {
-                RouterClass.routerClass
-                    .pushToSpecificScreenUsingWidget(FavoriteScreen());
-              },
-              icon: Icon(Icons.favorite_rounded)),
-          IconButton(
-              onPressed: () {
-                RouterClass.routerClass
-                    .pushToSpecificScreenUsingWidget(CartScreen());
-              },
-              icon: Image.asset('assets/images/Cart.png')),
-        ],
-        bottom: AppBarsize(),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SingleChildScrollView(
-              child: Row(
-                children: [FirstAdv(), FirstAdv()],
+        minTextAdapt: true,
+        builder: () => Scaffold(
+              appBar: AppBar(
+                title: Text(
+                  'Groceries',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                      fontSize: 24.sp),
+                ),
+                elevation: 0,
+                backgroundColor: Color(0xFF33907C),
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        RouterClass.routerClass
+                            .pushToSpecificScreenUsingWidget(FavoriteScreen());
+                      },
+                      icon: Icon(Icons.favorite_rounded)),
+                  IconButton(
+                      onPressed: () {
+                        RouterClass.routerClass
+                            .pushToSpecificScreenUsingWidget(CartScreen());
+                      },
+                      icon: Image.asset('assets/images/Cart.png')),
+                ],
+                bottom: AppBarsize(),
               ),
-              scrollDirection: Axis.horizontal,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 98.h,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
+              body: SingleChildScrollView(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Category(),
-                    Category(),
-                    Category(),
-                    Category(),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              height: 98.h,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [Category(), Category(), Category(), Category()],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Row(
-                children: [
-                  Text(
-                    'New Products',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.sp,
-                        fontFamily: 'Montserrat',
-                        color: Color(0xFF4F4F4F)),
-                  ),
-                  const Spacer(),
-                  CustomButtonSeeAll(
-                    title: 'See All',
-                    backgroudColor: const Color(0xFF33907C),
-                    titleColor: Colors.white,
-                  ),
-                ],
-              ),
-            ),
-            ProductWidget(),
-            SizedBox(
-              height: 25.h,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Row(
-                children: [
-                  Text(
-                    'Popular Product',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18.sp,
-                        fontFamily: 'Montserrat',
-                        color: Color(0xFF4F4F4F)),
-                  ),
-                  const Spacer(),
-                  CustomButtonSeeAll(
-                    title: 'See All',
-                    backgroudColor: const Color(0xFF33907C),
-                    titleColor: Colors.white,
-                  ),
-                ],
-              ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-
-                children: [
-                  ProductWidget(),
-                  ProductWidget(),
-                  ProductWidget(),
-                  ProductWidget(),
-
-
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 25.h,
-            ),
-            Container(
-              height: 355,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 185.h,
-                    color: Color(0xFF33907C),
-                    padding: EdgeInsets.only(
-                      left: 15.w,
-                      right: 15,
-                      top: 25,
+                    SingleChildScrollView(
+                      child: Row(
+                        children: [FirstAdv(), FirstAdv()],
+                      ),
+                      scrollDirection: Axis.horizontal,
                     ),
-                    child: Align(
-                      alignment: Alignment.topCenter,
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 98.h,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Category(),
+                            Category(),
+                            Category(),
+                            Category(),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 98.h,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Category(),
+                            Category(),
+                            Category(),
+                            Category()
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 15.w),
                       child: Row(
                         children: [
                           Text(
-                            'Store To follow',
+                            'New Products',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18.sp,
                                 fontFamily: 'Montserrat',
-                                color: Colors.white),
+                                color: Color(0xFF4F4F4F)),
                           ),
                           const Spacer(),
                           CustomButtonSeeAll(
-                            title: 'View All',
-                            backgroudColor: Colors.white,
-                            titleColor: Color(0xFF33907C),
+                            title: 'See All',
+                            backgroudColor: const Color(0xFF33907C),
+                            titleColor: Colors.white,
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 10.w, bottom: 10.h),
-                    child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              Store(),
-                              Store(),
-                              Store(),
-                            ],
+                    ProductWidget(),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Popular Product',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.sp,
+                                fontFamily: 'Montserrat',
+                                color: Color(0xFF4F4F4F)),
                           ),
-                        )),
-                  ),
-                ],
+                          const Spacer(),
+                          CustomButtonSeeAll(
+                            title: 'See All',
+                            backgroudColor: const Color(0xFF33907C),
+                            titleColor: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ProductWidget(),
+                          ProductWidget(),
+                          ProductWidget(),
+                          ProductWidget(),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    Container(
+                      height: 355,
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 185.h,
+                            color: Color(0xFF33907C),
+                            padding: EdgeInsets.only(
+                              left: 15.w,
+                              right: 15,
+                              top: 25,
+                            ),
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Store To follow',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18.sp,
+                                        fontFamily: 'Montserrat',
+                                        color: Colors.white),
+                                  ),
+                                  const Spacer(),
+                                  CustomButtonSeeAll(
+                                    title: 'View All',
+                                    backgroudColor: Colors.white,
+                                    titleColor: Color(0xFF33907C),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 10.w, bottom: 10.h),
+                            child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: [
+                                      Store(),
+                                      Store(),
+                                      Store(),
+                                    ],
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
-    ));
+            ));
   }
 }
 

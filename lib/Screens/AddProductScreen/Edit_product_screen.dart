@@ -219,7 +219,7 @@ class EditProductScreen extends StatelessWidget {
                       CustomTextfieldAddress(
                         labelText: 'Price Type',
                       ),
-                      TagTextfield('Additional Details'),
+                      TagTextfield(Title: 'Additional Details',),
                       SizedBox(
                         height: 25.h,
                       ),

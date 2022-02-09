@@ -1,7 +1,7 @@
 import 'package:finalprojectflutter/Data/secondrydata.dart';
 import 'package:finalprojectflutter/Providers/pageviewprovider.dart';
 import 'package:finalprojectflutter/Router/router.dart';
-import 'package:finalprojectflutter/Screens/LoginScreen/loginscreen.dart';
+import 'package:finalprojectflutter/Screens/SignUpScreen/type_user_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -95,7 +95,7 @@ class PageViewr extends StatelessWidget {
                               curve: Curves.easeIn);
 
                           provider.notifyListeners();}else{
-                           RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget(LoginScreen());
+                           RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget(TypeUserScreen());
                          }
                         },
                         child: Container(

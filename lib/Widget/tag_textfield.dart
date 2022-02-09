@@ -1,3 +1,4 @@
+import 'package:finalprojectflutter/Providers/authProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,12 +6,12 @@ import 'package:textfield_tags/textfield_tags.dart';
 
 class TagTextfield extends StatelessWidget {
   String Title;
+  AuthProvider provider;
 
-  TagTextfield(this.Title);
+  TagTextfield({this.Title, this.provider});
 
   @override
   Widget build(BuildContext context) {
-
     return ScreenUtilInit(
         designSize: Size(393, 851),
         minTextAdapt: true,
@@ -56,6 +57,8 @@ class TagTextfield extends StatelessWidget {
                     tagCancelIcon:
                         Icon(Icons.cancel, size: 18.0, color: Colors.grey)),
                 onTag: (tag) {
+                  provider.taglinetoreController = tag;
+                  provider.notifyListeners();
                   //This give you the tag that was entered
                   //print(tag)
                 },

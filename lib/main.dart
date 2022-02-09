@@ -8,6 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:provider/provider.dart';
 
+import 'Providers/add_product_provider.dart';
 import 'Providers/mainpageprovider.dart';
 import 'Providers/pageviewprovider.dart';
 import 'Router/router.dart';
@@ -19,17 +20,26 @@ import 'Screens/SignUpScreen/pinput_screen.dart';
 import 'Screens/SignUpScreen/send_code_phone.dart';
 import 'Screens/SplashScreen/splashscreen.dart';
 import 'Screens/StoreProfileSccreen/store_profile_screen.dart';
+import 'SharedPreferance/shared_preferance.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await SpHelper.spHelper.initSharedPrefrences();
   await Firebase.initializeApp();
+
+  await
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider<PageViewProvider>(
           create: (context) {
             return PageViewProvider();
+          },
+        ),
+        ChangeNotifierProvider<AddProductProvider>(
+          create: (context) {
+            return AddProductProvider();
           },
         ),
         ChangeNotifierProvider<MainPageProvider>(
@@ -57,7 +67,6 @@ void main() async {
   );
 }
 
-
 class MyApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -68,11 +77,11 @@ class MyApps extends StatelessWidget {
       splitScreenMode: true,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
-        navigatorKey: RouterClass.routerClass.navKey,
+        navigatorKey: RouterClass.routerClass.routerKey,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
-        home: MyApp(),
+        home: SplachScreen(),
         builder: (context, widget) {
           //add this line
           ScreenUtil.setContext(context);
@@ -86,6 +95,7 @@ class MyApps extends StatelessWidget {
     );
   }
 }
+/*
 class MyApp extends StatefulWidget {
 
   @override
@@ -122,3 +132,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+*/

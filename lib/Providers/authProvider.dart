@@ -16,10 +16,12 @@ class AuthProvider extends ChangeNotifier {
   GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> PhoneFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> LoginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> CreatStoreFormKey = GlobalKey<FormState>();
 
   TUser loggedUser;
   String value;
   String Code;
+  bool TypeUser = false;
 
   // login controller
   TextEditingController loginEmailController = TextEditingController();
@@ -34,6 +36,17 @@ class AuthProvider extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwrodController = TextEditingController();
   TextEditingController repasswordController = TextEditingController();
+
+  //create store controller
+  TextEditingController namestoreController = TextEditingController();
+  TextEditingController webstoreController = TextEditingController();
+  TextEditingController DesstoreController = TextEditingController();
+  TextEditingController typestoreController = TextEditingController();
+  TextEditingController addressstoreController = TextEditingController();
+  TextEditingController CitystoreController = TextEditingController();
+  TextEditingController statestoreController = TextEditingController();
+  TextEditingController courierstoreController = TextEditingController();
+  String taglinetoreController;
 
   // pinput code controller
   TextEditingController pinPutController = TextEditingController();
@@ -84,6 +97,11 @@ class AuthProvider extends ChangeNotifier {
     return isSuccess;
   }
 
+  CreatStoreValidate() {
+    bool isSuccess = CreatStoreFormKey.currentState.validate();
+    return isSuccess;
+  }
+
   PhoneValidate() {
     bool isSuccess = PhoneFormKey.currentState.validate();
     return isSuccess;
@@ -95,11 +113,55 @@ class AuthProvider extends ChangeNotifier {
     Code = credential.smsCode;
     log(Code);
     log(credential.smsCode);
+  }
 
+  editUser() async {
+    TUser tuser = TUser(
+        isseller: loggedUser.isseller,
+        Fname: loggedUser.Fname,
+        Lname: loggedUser.Lname,
+        email: loggedUser.email,
+        address: addressstoreController.text,
+        StoreName: namestoreController.text,
+        StoreWebAddress: webstoreController.text,
+        StoreDescription: DesstoreController.text,
+        StoreType: typestoreController.text,
+        StoreCity: CitystoreController.text,
+        StoreState: statestoreController.text,
+        StoreCourier: courierstoreController.text,
+        StoreTagLine: taglinetoreController,
+        numfollowers: 0,
+        numproducts: 0,
+        haveStore: true);
+    await FirebaseAuthHelper.firebaseAuthHelper.editUser(tuser);
+    await getUserFromFirebase();
+    Future.delayed(Duration(seconds: 2))
+        .then((value) => {RouterClass.routerClass.popwidget()});
+  }
+
+  RemoveStore() async {
+    TUser tuser = TUser(
+        isseller: loggedUser.isseller,
+        Fname: loggedUser.Fname,
+        Lname: loggedUser.Lname,
+        email: loggedUser.email,
+        address: addressstoreController.text,
+        StoreName: namestoreController.text,
+        StoreWebAddress: webstoreController.text,
+        StoreDescription: DesstoreController.text,
+        StoreType: typestoreController.text,
+        StoreCity: CitystoreController.text,
+        StoreState: statestoreController.text,
+        StoreCourier: courierstoreController.text,
+        StoreTagLine: taglinetoreController,
+        haveStore: false);
+    await FirebaseAuthHelper.firebaseAuthHelper.editUser(tuser);
+    getUserFromFirebase();
   }
 
   register(BuildContext context) async {
     TUser tuser = TUser(
+        isseller: TypeUser,
         Fname: firstNameController.text,
         Lname: lastNameController.text,
         email: emailController.text,
@@ -122,6 +184,7 @@ class AuthProvider extends ChangeNotifier {
       UserCredential userCredential =
           await FirebaseAuthHelper.firebaseAuthHelper.signIn(
               loginEmailController.text, loginPasswordController.text, context);
+      log(userCredential.user.uid);
       await getUserFromFirebase();
       RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
     } on Exception catch (e) {
@@ -130,17 +193,18 @@ class AuthProvider extends ChangeNotifier {
   }
 
   getUserFromFirebase() async {
-    String userId = FirebaseAuth.instance.currentUser.uid;
-    this.loggedUser =
-        await FirestoreHelper.firestoreHelper.getUserFromFs(userId);
-    notifyListeners();
+    if (FirebaseAuth.instance.currentUser != null) {
+      String userId = FirebaseAuth.instance.currentUser.uid;
+      log(userId);
+      this.loggedUser =
+          await FirestoreHelper.firestoreHelper.getUserFromFs(userId);
+      notifyListeners();
+    }
   }
 
   logOut() async {
     this.loggedUser = null;
     await FirebaseAuthHelper.firebaseAuthHelper.logout();
-    RouterClass.routerClass
-        .pushReplaceToSpecificScreenUsingWidget(LoginScreen());
   }
 
   forgetPassword(String email) async {

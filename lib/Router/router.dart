@@ -2,29 +2,26 @@ import 'package:flutter/material.dart';
 
 class RouterClass {
   RouterClass._();
+
   static RouterClass routerClass = RouterClass._();
-  GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
-  pushToSpecificScreenByName(String screenName) {
-    navKey.currentState.pushNamed(screenName);
+  GlobalKey<NavigatorState> routerKey = GlobalKey<NavigatorState>();
+
+  pushReplaceToSpecificScreenUsingWidget(Widget widget) {
+    BuildContext context = routerKey.currentState.context;
+    routerKey.currentState
+        .pushReplacement(MaterialPageRoute(builder: (context) {
+      return widget;
+    }));
   }
 
   pushToSpecificScreenUsingWidget(Widget widget) {
-    BuildContext context = navKey.currentContext;
-    navKey.currentState.push(MaterialPageRoute(builder: (context) {
+    BuildContext context = routerKey.currentState.context;
+    routerKey.currentState.push(MaterialPageRoute(builder: (context) {
       return widget;
     }));
   }
 
-  pushReplaceToSpecificScreenUsingWidget(Widget widget) {
-    BuildContext context = navKey.currentContext;
-    navKey.currentState.pushReplacement(MaterialPageRoute(builder: (context) {
-      return widget;
-    }));
+  popwidget() {
+    routerKey.currentState.pop();
   }
-
-  popFunction() {
-    navKey.currentState.pop();
-  }
-
-
 }
