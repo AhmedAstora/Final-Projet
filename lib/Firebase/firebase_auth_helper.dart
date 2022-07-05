@@ -91,7 +91,7 @@ class FirebaseAuthHelper {
       },
       verificationFailed: (FirebaseAuthException e) {},
       codeSent: (String verificationId, int resendToken) {
-        RouterClass.routerClass.pushToSpecificScreenUsingWidget(PinputScreen());
+        RouterClass.routerClass.pushToSpecificScreenUsingWidget('/PinputScreen');
         log(verificationId);
         log(resendToken.toString());
       },

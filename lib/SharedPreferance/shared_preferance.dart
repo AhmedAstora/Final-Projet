@@ -22,6 +22,16 @@ class SpHelper {
     sharedPreferences.setBool('isFirstTime', false);
   }
 
+  setIsLoginFirstTimeValue() {
+    sharedPreferences.setBool('isLoginFirstTime', false);
+  }
+
+  bool getIsLoginFirstTimeValue() {
+    bool isFirstTimes = sharedPreferences.getBool('isLoginFirstTime')?? true;
+    log(isFirstTimes.toString());
+    return isFirstTimes;
+  }
+
   setIsSellerTimeValue() {
     sharedPreferences.setBool('isSeller', false);
 

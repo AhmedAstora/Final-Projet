@@ -11,10 +11,7 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Scaffold(
+    return  Scaffold(
               backgroundColor: Color(0xFFF6F9FF),
               appBar: AppBar(
                 title: Text(
@@ -30,15 +27,15 @@ class HistoryScreen extends StatelessWidget {
                   IconButton(
                       onPressed: () {
                         RouterClass.routerClass
-                            .pushToSpecificScreenUsingWidget(ProductDetails());
+                            .pushToSpecificScreenUsingWidget('/ProductDetails');
                       },
                       icon: Icon(Icons.favorite_rounded)),
                   IconButton(
                       onPressed: () {
                         RouterClass.routerClass
-                            .pushToSpecificScreenUsingWidget(CartScreen());
+                            .pushToSpecificScreenUsingWidget('/CartScreen');
                       },
-                      icon: Image.asset('assets/images/Cart.png')),
+                      icon: Image.asset('assets/images/EmptyCart.png')),
                 ],
               ),
               body: Column(
@@ -85,6 +82,6 @@ class HistoryScreen extends StatelessWidget {
                   OrderHistory(),
                 ],
               ),
-            ));
+            );
   }
 }

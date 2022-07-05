@@ -6,19 +6,16 @@ import 'package:textfield_tags/textfield_tags.dart';
 
 class TagTextfield extends StatelessWidget {
   String Title;
-  AuthProvider provider;
+  String provider;
+  String tag ;
 
-  TagTextfield({this.Title, this.provider});
+  TagTextfield({this.Title, this.provider,this.tag});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => TextFieldTags(
+    return  TextFieldTags(
                 textSeparators: <String>[
-                  //text tag seperators
-                  //Default = " ", ","
+
                 ],
                 textFieldStyler: TextFieldStyler(
                   //These are properties you can tweek for customization
@@ -57,8 +54,8 @@ class TagTextfield extends StatelessWidget {
                     tagCancelIcon:
                         Icon(Icons.cancel, size: 18.0, color: Colors.grey)),
                 onTag: (tag) {
-                  provider.taglinetoreController = tag;
-                  provider.notifyListeners();
+                  provider= tag;
+
                   //This give you the tag that was entered
                   //print(tag)
                 },
@@ -75,6 +72,6 @@ class TagTextfield extends StatelessWidget {
                 //tagsDistanceFromBorderEnd: 0.725,
                 //scrollableTagsMargin: EdgeInsets.only(left: 9),
                 //scrollableTagsPadding: EdgeInsets.only(left: 9),
-                ));
+                );
   }
 }

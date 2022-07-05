@@ -18,6 +18,8 @@ class TUser {
   bool haveStore;
   int numproducts ;
   int numfollowers;
+  List<dynamic> favProduct ;
+  List<dynamic> cartProduct ;
 
   TUser({
     this.id,
@@ -39,7 +41,12 @@ class TUser {
     this.StoreCourier,
     this.StoreTagLine,
     this.haveStore = false,
+    this.favProduct ,
+    this.cartProduct,
+
   });
+
+
 
   TUser.fromMap(Map map) {
     this.Fname = map['Fname'];
@@ -60,6 +67,8 @@ class TUser {
     this.StoreTagLine = map['StoreTagLine'];
     this.isseller = map['isseller'];
     this.haveStore = map['haveStore'];
+    this.favProduct = map['favProduct'];
+    this.cartProduct = map['cartProduct'];
   }
 
   toMap() {
@@ -81,6 +90,8 @@ class TUser {
       'StoreCourier': this.StoreCourier,
       'StoreTagLine': this.StoreTagLine,
       'haveStore': this.haveStore,
+      'favProduct': this.favProduct,
+      'cartProduct': this.cartProduct,
     };
   }
 }

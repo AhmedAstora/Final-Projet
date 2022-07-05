@@ -18,10 +18,7 @@ class CustomTextfieldAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Container(
+    return  Container(
               height: 60.h,
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               margin: EdgeInsets.symmetric(vertical: 10.h),
@@ -43,6 +40,6 @@ class CustomTextfieldAddress extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.grey[400]),
                       ),
                       label: Text(labelText))),
-            ));
+            );
   }
 }

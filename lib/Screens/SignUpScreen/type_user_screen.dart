@@ -23,7 +23,7 @@ class TypeUserScreen extends StatelessWidget {
                   onTap: () {
                     provider.TypeUser = true;
                     RouterClass.routerClass
-                        .pushReplaceToSpecificScreenUsingWidget(SignUpScreen());
+                        .pushToSpecificScreenUsingWidget('/SignUpScreen');
                   },
                   child: Container(
                     width: 150.w,
@@ -41,7 +41,7 @@ class TypeUserScreen extends StatelessWidget {
                   onTap: () {
                     provider.TypeUser = false;
                     RouterClass.routerClass
-                        .pushReplaceToSpecificScreenUsingWidget(SignUpScreen());
+                        .pushToSpecificScreenUsingWidget('/SignUpScreen');
                   },
                   child: Container(
                     width: 150.w,

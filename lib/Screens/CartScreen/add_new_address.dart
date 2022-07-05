@@ -14,10 +14,7 @@ class AddAddressScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color(0xFF33907C)));
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Consumer<AddressProvider>(
+    return  Consumer<AddressProvider>(
               builder: (cnx, provider, x) {
                 return Scaffold(
                   backgroundColor: Colors.grey[300],
@@ -111,6 +108,6 @@ class AddAddressScreen extends StatelessWidget {
                   ),
                 );
               },
-            ));
+            );
   }
 }

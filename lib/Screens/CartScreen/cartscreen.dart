@@ -13,10 +13,7 @@ class CartScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color(0xFF33907C)));
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Scaffold(
+    return  Scaffold(
               backgroundColor: Colors.grey[300],
               appBar: AppBar(
                 centerTitle: true,
@@ -36,7 +33,7 @@ class CartScreen extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         RouterClass.routerClass.pushToSpecificScreenUsingWidget(
-                            AddAddressScreen());
+                            '/AddAddressScreen');
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -131,7 +128,7 @@ class CartScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ));
+            );
   }
 }
 

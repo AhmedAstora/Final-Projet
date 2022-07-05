@@ -16,16 +16,14 @@ class CustomTextfieldProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Container(
+    return Container(
               width: 121.w,
               height: 60.h,
               padding: EdgeInsets.symmetric(horizontal: 5.w),
               margin: EdgeInsets.symmetric(vertical: 10.h),
               child: TextFormField(
                   maxLength: 3,
+                  validator: validationFun,
                   style: TextStyle(color: Colors.black, fontSize: 16.sp),
                   keyboardType: textInputType,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -41,6 +39,6 @@ class CustomTextfieldProduct extends StatelessWidget {
                         borderSide: BorderSide(color: Colors.grey[400]),
                       ),
                       label: Text(labelText))),
-            ));
+            );
   }
 }

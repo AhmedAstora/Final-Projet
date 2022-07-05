@@ -11,10 +11,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () =>
+    return
             Container(
               alignment: Alignment.center,
               width: double.infinity,
@@ -31,7 +28,7 @@ class CustomButton extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 18.sp),
               ),
-            ));
+            );
   }
 
 }
@@ -45,10 +42,7 @@ class CustomButtoncart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () =>
+    return
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20.w),
               alignment: Alignment.center,
@@ -66,7 +60,7 @@ class CustomButtoncart extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 18.sp),
               ),
-            ));
+            );
   }
 
 }
@@ -81,10 +75,7 @@ class CustomButtonSeeAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () =>
+    return
             Container(
               alignment: Alignment.center,
               width: 85.w,
@@ -100,7 +91,7 @@ class CustomButtonSeeAll extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 12.sp),
               ),
-            ));
+            );
   }
 
 }
@@ -116,10 +107,7 @@ class CustomButtonorder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () =>
+    return
             Container(
               alignment: Alignment.center,
               width: 113.w,
@@ -137,7 +125,7 @@ class CustomButtonorder extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 12.sp),
               ),
-            ));
+            );
   }
 
 }
@@ -151,10 +139,7 @@ class CustomButtonorderConfirmed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () =>
+    return
             Container(
               alignment: Alignment.center,
               width: 149.w,
@@ -172,7 +157,7 @@ class CustomButtonorderConfirmed extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 12.sp),
               ),
-            ));
+            );
   }
 
 }

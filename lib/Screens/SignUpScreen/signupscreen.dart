@@ -9,6 +9,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
+  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
+
+  Snakbar(String message, BuildContext context) {
+    SnackBar snackBar = SnackBar(
+      content: Text(message),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  registerValidate(BuildContext context) {
+    bool isSuccess = registerFormKey.currentState.validate();
+    if (Provider.of<AuthProvider>(context, listen: false)
+            .passwrodController
+            .text ==
+        Provider.of<AuthProvider>(context, listen: false)
+            .repasswordController
+            .text) {
+      return isSuccess;
+    } else {
+      Snakbar('Password dosent match', context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,7 +47,7 @@ class SignUpScreen extends StatelessWidget {
               margin: EdgeInsets.only(top: 120.h, left: 20.w, right: 20.w),
               child: SingleChildScrollView(
                 child: Form(
-                  key: provider.registerFormKey,
+                  key: registerFormKey,
                   child: Column(
                     children: [
                       Text(
@@ -80,9 +103,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                         if(provider.registerValidate(context)) {
-                           provider.register(context);
-                         }
+                          if (registerValidate(context)) {
+                            provider.register(context);
+                          }
                         },
                         child: CustomButton(
                           title: 'Create',
@@ -108,7 +131,9 @@ class SignUpScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget(LoginScreen());
+                              RouterClass.routerClass
+                                  .pushReplaceToSpecificScreenUsingWidget(
+                                      '/LoginScreen');
                             },
                             child: Text(
                               'Sign in? ',

@@ -7,21 +7,34 @@ import 'package:finalprojectflutter/Router/router.dart';
 import 'package:finalprojectflutter/Screens/LoginScreen/loginscreen.dart';
 import 'package:finalprojectflutter/Screens/MainScreen/mainscreen.dart';
 import 'package:finalprojectflutter/Screens/SignUpScreen/pinput_screen.dart';
+import 'package:finalprojectflutter/SharedPreferance/shared_preferance.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:string_validator/string_validator.dart';
 
 class AuthProvider extends ChangeNotifier {
-  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> PhoneFormKey = GlobalKey<FormState>();
-  GlobalKey<FormState> LoginFormKey = GlobalKey<FormState>();
   GlobalKey<FormState> CreatStoreFormKey = GlobalKey<FormState>();
+
+  AuthProvider() {
+    getUserFromFirebase();
+    getAllUserFromFireBase();
+  }
+
+  int IndexNavigationButton = 0;
+  bool Animate =false;
 
   TUser loggedUser;
   String value;
   String Code;
   bool TypeUser = false;
+  List<TUser> allusers;
+ Duration  duration =  Duration(seconds: 3);
+
+  final RoundedLoadingButtonController btnController =
+      RoundedLoadingButtonController();
 
   // login controller
   TextEditingController loginEmailController = TextEditingController();
@@ -51,9 +64,15 @@ class AuthProvider extends ChangeNotifier {
   // pinput code controller
   TextEditingController pinPutController = TextEditingController();
 
+  getAllUserFromFireBase() async {
+    this.allusers = await FirestoreHelper.firestoreHelper.getAllUsers();
+    allusers = allusers.where((element) => element.haveStore).toList();
+    notifyListeners();
+  }
+
   isCorrectCode() {
     if (Code == pinPutController.text) {
-      RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
+      RouterClass.routerClass.pushToSpecificScreenUsingWidget('/MainScreen');
     }
   }
 
@@ -81,20 +100,6 @@ class AuthProvider extends ChangeNotifier {
       content: Text(message),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  registerValidate(BuildContext context) {
-    bool isSuccess = registerFormKey.currentState.validate();
-    if (passwrodController.text == repasswordController.text) {
-      return isSuccess;
-    } else {
-      Snakbar('Password dosent match', context);
-    }
-  }
-
-  LoginValidate() {
-    bool isSuccess = LoginFormKey.currentState.validate();
-    return isSuccess;
   }
 
   CreatStoreValidate() {
@@ -160,20 +165,27 @@ class AuthProvider extends ChangeNotifier {
   }
 
   register(BuildContext context) async {
+    List<String> list = [];
     TUser tuser = TUser(
         isseller: TypeUser,
         Fname: firstNameController.text,
         Lname: lastNameController.text,
         email: emailController.text,
+        favProduct:  list,
+        cartProduct:  list,
         password: passwrodController.text);
+
     try {
       String userId = await FirebaseAuthHelper.firebaseAuthHelper
           .CreateNewUser(tuser.email, tuser.password, context);
       log(userId);
       tuser.id = userId;
+
       await FirestoreHelper.firestoreHelper.createUserInFs(tuser);
       this.loggedUser = tuser;
-      RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
+
+      await getUserFromFirebase();
+      RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget('/MainScreen');
     } on Exception catch (e) {
       // EVERYTHING
     }
@@ -184,12 +196,17 @@ class AuthProvider extends ChangeNotifier {
       UserCredential userCredential =
           await FirebaseAuthHelper.firebaseAuthHelper.signIn(
               loginEmailController.text, loginPasswordController.text, context);
+      btnController.success();
+      Future.delayed(Duration(seconds: 3));
       log(userCredential.user.uid);
       await getUserFromFirebase();
-      RouterClass.routerClass.pushToSpecificScreenUsingWidget(MainScreen());
+   //   SpHelper.spHelper.getIsSellerTimeValue();
+
+      RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget('/MainScreen');
     } on Exception catch (e) {
       // EVERYTHING
     }
+    notifyListeners();
   }
 
   getUserFromFirebase() async {

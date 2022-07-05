@@ -15,6 +15,8 @@ class Product {
   num offerPrice;
   File imageToBeUpload;
   String idStore ;
+  String Storename ;
+  bool isLast ;
 
   Product({
     this.id,
@@ -30,6 +32,8 @@ class Product {
     this.offerPrice,
     this.imageToBeUpload,
     this.idStore,
+    this.Storename,
+    this.isLast = false
   });
 
   Product.fromMap(Map<String, dynamic> map) {
@@ -45,6 +49,8 @@ class Product {
     this.AdditionalDetails = map['AdditionalDetails'];
     this.offerPrice = map['offerPrice'];
     this.idStore = map['idStore'];
+    this.Storename = map['Storename'];
+    this.isLast = map['isLast'];
   }
 
   toMap() {
@@ -60,6 +66,8 @@ class Product {
       'AdditionalDetails': this.AdditionalDetails,
       'offerPrice': this.offerPrice,
       'idStore': this.idStore,
+      'Storename': this.Storename,
+      'isLast': this.isLast,
     };
   }
 }

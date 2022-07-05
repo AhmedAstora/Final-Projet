@@ -17,10 +17,7 @@ class CreateNewStore extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Color(0xFF33907C)));
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Consumer<AuthProvider>(
+    return  Consumer<AuthProvider>(
               builder: (cnx, provider, x) {
                 return Scaffold(
                   backgroundColor: Color(0xFFF6F9FF),
@@ -126,7 +123,7 @@ class CreateNewStore extends StatelessWidget {
                                     ),
                                     TagTextfield(
                                       Title: 'Tageline',
-                                      provider: provider,
+                                      provider: provider.taglinetoreController,
 
                                     ),
                                     SizedBox(
@@ -161,7 +158,7 @@ class CreateNewStore extends StatelessWidget {
                   ),
                 );
               },
-            ));
+            );
   }
 }
 

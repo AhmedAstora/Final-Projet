@@ -14,10 +14,7 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Consumer<AuthProvider>(
+    return  Consumer<AuthProvider>(
               builder: (cnx, provider, x) {
                 return Scaffold(
                   backgroundColor: Color(0xFFF6F9FF),
@@ -36,23 +33,23 @@ class StoreScreen extends StatelessWidget {
                           onPressed: () {
                             RouterClass.routerClass
                                 .pushToSpecificScreenUsingWidget(
-                                    ProductDetails());
+                                    '/ProductDetails');
                           },
                           icon: Icon(Icons.favorite_rounded)),
                       IconButton(
                           onPressed: () {
                             RouterClass.routerClass
-                                .pushToSpecificScreenUsingWidget(CartScreen());
+                                .pushToSpecificScreenUsingWidget('/CartScreen');
                           },
-                          icon: Image.asset('assets/images/Cart.png')),
+                          icon: Image.asset('assets/images/EmptyCart.png')),
                     ],
                   ),
-                  body: provider.loggedUser.isseller &&
-                          !provider.loggedUser.haveStore
-                      ? EmptyStoreBody()
-                      : StoreBody(),
+                  body: provider.loggedUser.isseller?
+                          !provider.loggedUser.haveStore?
+                       EmptyStoreBody()
+                      : StoreBody():Center(child: Text('Please Sign up as Seller'),),
                 );
               },
-            ));
+            );
   }
 }

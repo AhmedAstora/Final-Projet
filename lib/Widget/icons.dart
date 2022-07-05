@@ -9,10 +9,7 @@ class IconsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-    minTextAdapt: true,
-    builder: () =>Container(
+    return Container(
       width: 32.w,
       height: 32.h,
         decoration: BoxDecoration(
@@ -20,6 +17,6 @@ class IconsWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(30)),
         child: Icon(
           iconData,color: Colors.white,size: 22,
-        )));
+        ));
   }
 }

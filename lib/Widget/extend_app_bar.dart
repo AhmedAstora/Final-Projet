@@ -5,13 +5,10 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Container(
+    return  Container(
               width: double.infinity,
               color: Color(0xFF33907C),
-            ));
+            );
   }
 
   @override

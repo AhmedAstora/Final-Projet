@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget FirstAdv() {
-  return ScreenUtilInit(
-      designSize: Size(393, 851),
-      minTextAdapt: true,
-      builder: () => Stack(
+  return  Stack(
             children: [
               Container(
                 margin: EdgeInsets.only(left: 15.w, top: 15.h, bottom: 15.h),
@@ -53,5 +50,5 @@ YOUR HOME''',
                 ),
               ),
             ],
-          ));
+          );
 }

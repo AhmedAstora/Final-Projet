@@ -10,10 +10,7 @@ class EmptyStoreBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-      designSize: Size(393, 851),
-      minTextAdapt: true,
-      builder: () => Column(
+    return  Column(
         children: [
           Container(
             color: Color(0xFF33907C),
@@ -37,7 +34,7 @@ class EmptyStoreBody extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  RouterClass.routerClass.pushToSpecificScreenUsingWidget(CreateNewStore());
+                  RouterClass.routerClass.pushToSpecificScreenUsingWidget('/CreateNewStore');
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 70.w),
@@ -51,7 +48,7 @@ class EmptyStoreBody extends StatelessWidget {
             ],
           )
         ],
-      ),
+
     );
   }
 }

@@ -7,10 +7,7 @@ class OrderHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () => Container(
+    return  Container(
               margin: EdgeInsets.only(top: 6.h),
               color: Colors.white,
               height: 86.h,
@@ -84,6 +81,6 @@ class OrderHistory extends StatelessWidget {
                   ),
                 ],
               ),
-            ));
+            );
   }
 }

@@ -2,6 +2,7 @@ import 'package:finalprojectflutter/Data/secondrydata.dart';
 import 'package:finalprojectflutter/Providers/pageviewprovider.dart';
 import 'package:finalprojectflutter/Router/router.dart';
 import 'package:finalprojectflutter/Screens/SignUpScreen/type_user_screen.dart';
+import 'package:finalprojectflutter/SharedPreferance/shared_preferance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -9,10 +10,7 @@ import 'package:provider/provider.dart';
 class PageViewr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: Size(393, 851),
-        minTextAdapt: true,
-        builder: () =>
+    return
             Consumer<PageViewProvider>(builder: (context, provider, x) {
               return Scaffold(
                 backgroundColor: Colors.white,
@@ -91,11 +89,13 @@ class PageViewr extends StatelessWidget {
                         onTap: () {
                          if(provider.text =='Next') {
                           provider.controller.nextPage(
-                              duration: Duration(milliseconds: 400),
+                              duration: Duration(milliseconds: 200),
                               curve: Curves.easeIn);
 
-                          provider.notifyListeners();}else{
-                           RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget(TypeUserScreen());
+                          provider.notifyListeners();}
+                         else{
+                           SpHelper.spHelper.setIsFirstTimeValue();
+                           RouterClass.routerClass.pushReplaceToSpecificScreenUsingWidget('/LoginScreen');
                          }
                         },
                         child: Container(
@@ -119,16 +119,17 @@ class PageViewr extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     Container(
-                      margin: EdgeInsets.only(bottom: 120.h),
-                      child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Indicator(provider.currentIndex)),
-                    ),
+                      margin: EdgeInsets.symmetric(vertical: 150.h),
+                      alignment: Alignment.bottomCenter,
+                      height: double.infinity,
+                        child: Indicator(provider.currentIndex)),
+
                   ],
                 ),
               );
-            }));
+            });
   }
 }
 
@@ -143,18 +144,47 @@ class Indicator extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Dots(index == 0 ? 0xFF33907C : 0xFF85BCB0),
-        Dots(index == 1 ? 0xFF33907C : 0xFF85BCB0),
-        Dots(index == 2 ? 0xFF33907C : 0xFF85BCB0),
+        Dots(index == 0 ? 0xFF33907C : 0xFF85BCB0, 15, 15),
+        Dots(index == 1 ? 0xFF33907C : 0xFF85BCB0, 15, 15),
+        Dots(index == 2 ? 0xFF33907C : 0xFF85BCB0, 15, 15),
       ],
     );
   }
 
-  Widget Dots(int Colordot) {
+
+
+  Widget Dots(int Colordot,double width,double height) {
     return Container(
       margin: EdgeInsets.all(4),
-      height: 15,
-      width: 15,
+      height: height,
+      width: width,
+      decoration: BoxDecoration(color: Color(Colordot), shape: BoxShape.circle),
+    );
+  }
+}
+
+class IndicatorMain extends StatelessWidget {
+  final int index;
+
+  IndicatorMain(this.index);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        DotsMain(index == 0 ? 0xFF33907C : 0xFF85BCB0,10,10),
+        DotsMain(index == 1 ? 0xFF33907C : 0xFF85BCB0,10,10),
+        DotsMain(index == 2 ? 0xFF33907C : 0xFF85BCB0,10,10),
+      ],
+    );
+  }
+  Widget DotsMain(int Colordot,double width,double height) {
+    return Container(
+      margin: EdgeInsets.all(4),
+      height: height,
+      width: width,
       decoration: BoxDecoration(color: Color(Colordot), shape: BoxShape.circle),
     );
   }

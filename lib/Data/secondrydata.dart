@@ -16,4 +16,10 @@ class ViewPager {
         title: ' Donate, Invest & Support infrastructure projects',
         image: 'assets/images/photo3.png'),
   ];
+
+  static List<String> pageViewDataMain = [
+    'assets/images/adv1.jpg',
+    'assets/images/adv2.jpg',
+    'assets/images/adv3.jpg',
+  ];
 }
